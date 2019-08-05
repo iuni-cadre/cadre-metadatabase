@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS user_login (
     id SERIAL PRIMARY KEY,
-    social_id int NOT NULL,,
+    social_id int NOT NULL,
     name varchar(256) NOT NULL,
     email varchar(256) NOT NULL,
     institution varchar(256) NOT NULL
@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS "users" (
     created_on timestamptz,
     modified_on timestamptz,
     created_by int,
-    modified_by int,
+    modified_by int
 );
 
 CREATE TABLE IF NOT EXISTS user_role (
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS user_role (
 );
 
 CREATE TABLE IF NOT EXISTS user_team (
-    user_id int REFERENCES users (user_id),,
+    user_id int REFERENCES users (user_id),
     team_id int,
     team_name varchar(256),
     created_on timestamptz,
@@ -38,11 +38,11 @@ CREATE TABLE IF NOT EXISTS user_team (
     created_by int,
     modified_by int,
 
-    CONSTRAINT user_role_pk PRIMARY KEY (user_id, team)
+    CONSTRAINT user_role_pk PRIMARY KEY (user_id, team_id)
 );
 
 CREATE TABLE IF NOT EXISTS jupyter_user (
-    user_id int REFERENCES users (user_id),,
+    user_id int REFERENCES users (user_id),
     jupyter_username varchar(256),
     jupyter_pwd varchar(256),
     jupyter_token varchar(256),
@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS jupyter_user (
 
 CREATE TABLE IF NOT EXISTS user_job (
     job_id SERIAL PRIMARY KEY,
-    user_id int REFERENCES users (user_id),,
+    user_id int REFERENCES users (user_id),
     message_id varchar(256),
     s3_location varchar(256),
     efs_location varchar(256),
@@ -85,7 +85,7 @@ CREATE TABLE IF NOT EXISTS tool (
 
 CREATE TABLE IF NOT EXISTS package (
     package_id SERIAL PRIMARY KEY,
-    tool_id int REFERENCES tool (tool_id),,
+    tool_id int REFERENCES tool (tool_id),
     archive_id int,
     type varchar(256),
     description varchar(256),

@@ -38,7 +38,9 @@ if __name__ == '__main__':
     try:
         connection = cadre_meta_connection_pool.getconn()
         with connection.cursor() as cursor:
-            cursor.execute(open("cadre-metadatabase.sql", "r").read())
+            sql_file = abspath + '/cadre-metadatabase.sql'
+            logger.info(sql_file)
+            cursor.execute(open(sql_file, "r").read())
         connection.commit()
     except (Exception, psycopg2.Error) as error:
         traceback.print_tb(error.__traceback__)
