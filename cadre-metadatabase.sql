@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS user_team (
     created_by int,
     modified_by int,
 
-    CONSTRAINT user_role_pk PRIMARY KEY (user_id, team_id)
+    CONSTRAINT user_team_pk PRIMARY KEY (user_id, team_id)
 );
 
 CREATE TABLE IF NOT EXISTS jupyter_user (
@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS jupyter_user (
     created_by int,
     modified_by int,
 
-    CONSTRAINT user_role_pk PRIMARY KEY (user_id, jupyter_username)
+    CONSTRAINT user_jupyter_pk PRIMARY KEY (user_id, jupyter_username)
 );
 
 CREATE TABLE IF NOT EXISTS user_job (
