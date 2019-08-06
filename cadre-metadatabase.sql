@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS user_job (
 );
 
 CREATE TABLE IF NOT EXISTS tool (
-    tool_id SERIAL PRIMARY KEY,
+    tool_id varchar(256) PRIMARY KEY,
     description varchar(256),
     name varchar(256),
     script_name varchar(256),
@@ -94,8 +94,8 @@ CREATE TABLE IF NOT EXISTS tool (
 );
 
 CREATE TABLE IF NOT EXISTS package (
-    package_id SERIAL PRIMARY KEY,
-    tool_id int REFERENCES tool (tool_id),
+    package_id varchar(256) PRIMARY KEY,
+    tool_id varchar(256) REFERENCES tool (tool_id),
     archive_id int,
     type varchar(256),
     description varchar(256),
