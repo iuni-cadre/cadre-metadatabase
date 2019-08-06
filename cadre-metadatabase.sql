@@ -10,12 +10,22 @@ CREATE TABLE IF NOT EXISTS "users" (
     user_id SERIAL PRIMARY KEY,
     login_id int REFERENCES user_login (id),
     username varchar(256) NOT NULL,
+    aws_username varchar(256) NOT NULL,
     password_hash varchar(256),
     email varchar(256),
     created_on timestamptz,
     modified_on timestamptz,
     created_by int,
     modified_by int
+);
+
+CREATE TABLE IF NOT EXISTS user_token (
+    user_id int REFERENCES users (user_id),
+    type varchar(256),
+    token text,
+    token_expiration timestamptz,
+
+    CONSTRAINT user_token_pk PRIMARY KEY (user_id, type)
 );
 
 CREATE TABLE IF NOT EXISTS user_role (
