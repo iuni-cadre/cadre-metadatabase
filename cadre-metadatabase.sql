@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS jupyter_user (
 );
 
 CREATE TABLE IF NOT EXISTS user_job (
-    job_id SERIAL PRIMARY KEY,
+    job_id varchar(256) PRIMARY KEY,
     user_id int REFERENCES users (user_id),
     message_id varchar(256),
     s3_location varchar(256),
@@ -93,23 +93,8 @@ CREATE TABLE IF NOT EXISTS tool (
     modified_by int
 );
 
-CREATE TABLE IF NOT EXISTS package (
-    package_id varchar(256) PRIMARY KEY,
-    tool_id varchar(256) REFERENCES tool (tool_id),
-    archive_id int,
-    type varchar(256),
-    description varchar(256),
-    name varchar(256),
-    doi varchar(256),
-    permissions jsonb,
-    created_on timestamptz,
-    modified_on timestamptz,
-    created_by int,
-    modified_by int
-);
-
 CREATE TABLE IF NOT EXISTS archive (
-    archive_id SERIAL PRIMARY KEY,
+    archive_id  varchar(256) PRIMARY KEY,
     s3_location varchar(256),
     description varchar(256),
     name varchar(256),
@@ -118,6 +103,23 @@ CREATE TABLE IF NOT EXISTS archive (
     modified_on timestamptz,
     created_by int,
     modified_by int
+);
+
+CREATE TABLE IF NOT EXISTS package (
+    package_id varchar(256),
+    tool_id varchar(256) REFERENCES tool (tool_id),
+    archive_id varchar(256) REFERENCES archive (archive_id),
+    type varchar(256),
+    description varchar(256),
+    name varchar(256),
+    doi varchar(256),
+    permissions jsonb,
+    created_on timestamptz,
+    modified_on timestamptz,
+    created_by int,
+    modified_by int,
+
+    CONSTRAINT package_pk PRIMARY KEY (package_id, archive_id)
 );
 
 CREATE TABLE IF NOT EXISTS share (
