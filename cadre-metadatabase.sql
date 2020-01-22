@@ -80,6 +80,20 @@ CREATE TABLE IF NOT EXISTS user_job (
     modified_by int
 );
 
+CREATE TABLE IF NOT EXISTS query_result (
+    id SERIAL PRIMARY KEY,
+    job_id varchar(256) REFERENCES user_job(job_id),
+    efs_path varchar(256),
+    file_checksum text,
+    data_type varchar(256),
+    authenticity boolean,
+    created_on timestamptz,
+    modified_on timestamptz,
+    created_by int,
+    modified_by int
+);
+
+
 CREATE TABLE IF NOT EXISTS tool (
     tool_id varchar(256) PRIMARY KEY,
     description varchar(256),
