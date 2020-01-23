@@ -67,6 +67,7 @@ CREATE TABLE IF NOT EXISTS jupyter_user (
 CREATE TABLE IF NOT EXISTS user_job (
     job_id varchar(256) PRIMARY KEY,
     user_id int REFERENCES users (user_id),
+    name varchar(256),
     message_id varchar(256),
     s3_location varchar(256),
     efs_location varchar(256),
@@ -109,6 +110,7 @@ CREATE TABLE IF NOT EXISTS tool (
 
 CREATE TABLE IF NOT EXISTS archive (
     archive_id  varchar(256) PRIMARY KEY,
+    query_result_id int REFERENCES query_result(id),
     s3_location varchar(256),
     description varchar(256),
     name varchar(256),
