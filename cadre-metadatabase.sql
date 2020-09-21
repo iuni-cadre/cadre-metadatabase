@@ -154,4 +154,14 @@ CREATE TABLE IF NOT EXISTS share (
     modified_by int
 );
 
+CREATE TABLE IF NOT EXISTS user_profile (
+    user_id int REFERENCES users (user_id),
+    display_name varchar(256),
+    agreement_signed boolean,
+    date_agreement_signed timestamptz,
+    access_form_fields json,
+
+    CONSTRAINT user_profile_pk PRIMARY KEY (user_id)
+    
+);
 
