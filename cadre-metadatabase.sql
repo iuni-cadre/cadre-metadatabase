@@ -51,6 +51,16 @@ CREATE TABLE IF NOT EXISTS user_team (
     CONSTRAINT user_team_pk PRIMARY KEY (user_id, team_id)
 );
 
+CREATE TABLE IF NOT EXISTS user_profile (
+    user_id int REFERENCES users (user_id),
+    display_name varchar(256),
+    agreement_signed boolean,
+    date_agreement_signed timestamptz,
+    access_form_fields json,
+
+    CONSTRAINT user_profile_pk PRIMARY KEY (user_id)
+);
+
 CREATE TABLE IF NOT EXISTS jupyter_user (
     user_id int REFERENCES users (user_id),
     jupyter_username varchar(256),
@@ -136,6 +146,7 @@ CREATE TABLE IF NOT EXISTS package (
     permissions jsonb,
     to_be_deleted boolean,
     published boolean,
+    featured boolean,
     created_on timestamptz,
     modified_on timestamptz,
     created_by int,
