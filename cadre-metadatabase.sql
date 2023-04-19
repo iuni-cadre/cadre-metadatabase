@@ -165,4 +165,26 @@ CREATE TABLE IF NOT EXISTS share (
     modified_by int
 );
 
+CREATE TABLE IF NOT EXISTS listener_status (
+   listener_id int PRIMARY KEY,
+   last_cluster varchar(32),
+   status varchar(32) CHECK (status IN ('IDLE', 'RUNNING', 'STOPPED')),
+   last_report_time timestamp
+);
 
+INSERT INTO listener_status (listener_id, last_cluster, status, last_report_time)
+VALUES(1, 'NONE', 'STOPPED', '2021-01-01 00:00:01-05');
+INSERT INTO listener_status (listener_id, last_cluster, status, last_report_time)
+VALUES(2, 'NONE', 'STOPPED', '2021-01-01 00:00:01-05');
+INSERT INTO listener_status (listener_id, last_cluster, status, last_report_time)
+VALUES(3, 'NONE', 'STOPPED', '2021-01-01 00:00:01-05');
+INSERT INTO listener_status (listener_id, last_cluster, status, last_report_time)
+VALUES(4, 'NONE', 'STOPPED', '2021-01-01 00:00:01-05');
+INSERT INTO listener_status (listener_id, last_cluster, status, last_report_time)
+VALUES(5, 'NONE', 'STOPPED', '2021-01-01 00:00:01-05');
+INSERT INTO listener_status (listener_id, last_cluster, status, last_report_time)
+VALUES(6, 'NONE', 'STOPPED', '2021-01-01 00:00:01-05');
+INSERT INTO listener_status (listener_id, last_cluster, status, last_report_time)
+VALUES(7, 'NONE', 'STOPPED', '2021-01-01 00:00:01-05');
+INSERT INTO listener_status (listener_id, last_cluster, status, last_report_time)
+VALUES(8, 'NONE', 'STOPPED', '2021-01-01 00:00:01-05');
